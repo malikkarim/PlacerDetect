@@ -49,7 +49,7 @@ from tensorflow.python.client import device_lib
 print(device_lib)
 
 #------------------------------------------------
-os.chdir(r"D:\Malik\skySat")# directory to data
+os.chdir(r"D:\Malik\skySat")# directory to your data
 #-----------------------------------------
 images = h5py.File(r'C:\Users\karim\Desktop\parkLot_proj\skySat\images.h5', 'r')
 image = images.get('images')
@@ -67,7 +67,7 @@ def loadParkLot(): # function to load images
     classes =  os.listdir(path_2)
     sampSize = np.size(classes)
     print("numb of images:", sampSize)
-    print('[INFO]Starting reading into folder...')
+    print('[Progress] Reading into folder...')
     images = np.array([np.array(cv2.imread(path_2 +'\\'+ img)) for img in classes if img.endswith("tif")])   
     #images /= 255.0 #normalize data
     return images
@@ -78,7 +78,7 @@ def loadLabel():
     classes =  os.listdir(path1)
     sampSize = np.size(classes)
     print("numb of images:", sampSize)
-    print('[INFO] Starting reading into folder...')
+    print('[Progress] Reading into folder...')
     labels = np.array([np.array(cv2.imread(path1 +'\\'+ img)) for img in classes if img.endswith("tif")], "f")   
     return labels
 labels = loadLabel() 

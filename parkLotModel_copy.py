@@ -1,53 +1,15 @@
-# -*- coding: utf-8 -*-
 """
 @author: Karim
 """
 # import required packages and libraries
-import tensorflow as tf
-#from tensorflow.python.keras import models
-from keras.layers import Input
-#from keras.regularizers import l2
-from keras.layers.normalization import BatchNormalization
-from keras.layers.core import Dense, Activation, Flatten, Dropout
-from keras.layers.convolutional import Conv2D, Conv2DTranspose
-from keras.layers.pooling import MaxPooling2D
-from keras.layers.merge import concatenate
-from keras.models import load_model, Model, Sequential
-from keras.optimizers import Adam,RMSprop
-import tensorflow.keras.backend as K
-import keras
-# from keras.models import *
-# from keras.layers import *
-# from keras.optimizers import *
-from keras.callbacks import ModelCheckpoint, LearningRateScheduler
-#from keras import backend as keras
-#from keras import backend as K
-#import tensorflow.contrib as tfcontrib
-from tensorflow.python.keras import layers, losses
-from tensorflow.python.keras.callbacks import TensorBoard, EarlyStopping, ReduceLROnPlateau
-#from tensorflow.python.keras import backend as K
-from sklearn.metrics import confusion_matrix, cohen_kappa_score
-import numpy as np 
-import os
-#import skimage.io as io
-#import skimage.transform as trans
-import pandas as pd
-import matplotlib.pyplot as plt
-import cv2
-from keras.utils import np_utils
-import h5py
-import timeit
-from sklearn.preprocessing import MinMaxScaler
 #===================================================
 # GPU sttings .................
 #K.clear_session()
 config = tf.compat.v1.ConfigProto(device_count = {'GPU': 0}) 
 sess = tf.compat.v1.Session(config=config) 
 K.set_session(sess)
-
 from tensorflow.python.client import device_lib
 print(device_lib)
-
 #------------------------------------------------
 os.chdir(r"D:\Malik\skySat")# directory to your data
 #-----------------------------------------
@@ -150,7 +112,11 @@ def dice_loss(y_true, y_pred):
 def mce_dice_loss(y_true, y_pred):
     loss = losses.categorical_crossentropy(y_true, y_pred) + dice_loss(y_true, y_pred)
     return loss
-
+    
+# This function tests github    
+def testGit():
+    print("Github demo")
+    return "Done testing"
 #==============================================================================
 def mean_iou(y_true, y_pred):
     prec = []
@@ -162,7 +128,6 @@ def mean_iou(y_true, y_pred):
             score = tf.identity(score)
         prec.append(score)
     return K.mean(K.stack(prec), axis = 0)
-
 #------------------------------------------------------------------------------
 # Define a custom weighted loss
 # set weight for each class based on its abundance
